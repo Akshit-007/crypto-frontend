@@ -3,13 +3,34 @@ import '../css/style.css'
 import Nav from "./nav"
 
 const Home = () => {
-        return (
-            <>
-                <Nav/>
+    return (
+        <>
+            <div className="home">
+                <Nav />
                 <div className="main-container">
-                <h1 className="">this is our second project on crypto  </h1>
+                    <div className="firstrow">
+                        <a>#</a>
+                        <a>NAME</a>
+                        <a>PRICE</a>
+                        <a>1D CHANGE</a>
+                    </div>
+                    <div className="all">
+                        <div className="allrow">
+                            <li>#</li>
+                            <li>NAME</li>
+                            <li>PRICE</li>
+                            <li>1D CHANGE</li>
+                        </div>
+                        <div className="allrow">
+                            <li>#</li>
+                            <li>NAME</li>
+                            <li>PRICE</li>
+                            <li>1D CHANGE</li>
+                        </div>
+                    </div>
                 </div>
-            </>
-        );
+            </div>
+        </>
+    );
 };
 export default (Home);

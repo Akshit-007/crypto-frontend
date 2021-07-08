@@ -1,4 +1,4 @@
-export const  read = (userId , token ) => 
+export const  read = (userId , token) => 
 {
   return   fetch(`${process.env.REACT_APP_API_URL}/users/${userId}` , {method: "GET" , headers: {
         Accept: "application/json",
