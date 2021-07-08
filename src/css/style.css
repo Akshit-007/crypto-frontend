@@ -80,4 +80,7 @@ body{
     font-size: 15px;
     margin-bottom: 2px;
 }
-
+.allrow li
+{
+    padding: auto;
+}
