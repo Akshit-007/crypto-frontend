@@ -5,6 +5,12 @@ body{
     margin: 0px;
 }
 
+.red{color: red;}
+.green{color:green}
+.imglogo
+{
+    width: 10%;
+}
 .container{
     max-width: 1200px;
     width: 90%;

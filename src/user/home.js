@@ -10,24 +10,23 @@ const Home = () => {
 
     const fetch = () => {
         fetchCrypto()
-            .then(data => {
-                setCryptos(data)
-            })
+            .then(data => { setCryptos(data) })
             .catch(err => console.log(err))
     }
 
-    useEffect(() => {
-        fetch()
-    }, [reload])
+    useEffect(() => { fetch() }, [reload])
+    console.log(cryptos);
     return (
         <>
             <div className="home">
                 <Nav />
                 <div className="main-container">
                     <div className="firstrow">
-                        <a href="/">#</a>
+                        <a href="/">#RANK</a>
+                        <a href="/">TAG</a>
                         <a href='/'>NAME</a>
                         <a href='/'>PRICE</a>
+                        <a href="/">#MARKET CAP</a>
                         <a href='/'>1D CHANGE</a>
                     </div>
 
@@ -35,10 +34,17 @@ const Home = () => {
                         {
                             cryptos.map((value, key) => (
                                 <div className="allrow">
-                                    <li>{value.currency}</li>
-                                    <li>{value.name}</li>
-                                    <li>{value.price < 1 ? (value.price) : (Math.trunc(value.price))}</li>
                                     <li>{value.rank}</li>
+                                    <li>{value.currency}</li>
+                                    {
+                                        <li>
+                                            <img className="imglogo" src={value.logo_url} alt="" />
+                                            {value.name}</li>
+                                    }
+                                    <li>${value.price < 1 ? parseFloat(value.price).toFixed(5) : (parseFloat(value.price).toFixed(2))}</li>
+                                    <li>{parseFloat(value.market_cap / 1000000000).toFixed(2)} B</li>
+                                    <li className={value["1d"].price_change_pct * 100 < 0 ? 'red' : 'green'} >{parseFloat(value["1d"].price_change_pct * 100).toFixed(2)}%</li>
+
 
                                 </div>
                             ))
