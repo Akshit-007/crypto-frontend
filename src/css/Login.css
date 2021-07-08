@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+.loginnameh2 {
+  text-align: center;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 40px 8px 10px 8px; 
+}
+.position {
+  display: flex;
+  align-items: center;
+  flex-direction: column; 
+  justify-content: center;
+  width: 100%;
+  height: 110vh;
+  padding: 20px;
+  background-color: #99c599;
+  padding-top: 100px;
+}
+.formContent  {
+  border-radius: 20px;
+  background: #fff;
+  width: 90%;
+  max-width: 450px;
+  position: relative;
+  padding: 0px;
+  margin-left: 20px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.login-btn{
+  background-color: #00e600;
+  border: none;
+  color: white;
+  padding: 15px 80px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 18px;
+  border-radius: 5px;
+  margin: 20px 30px 20px 30px;
+}
+.edit-btn1{
+  background-color: #00e600;
+  border: none;
+  color: white;
+  padding: 15px 80px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 18px;
+  border-radius: 5px;
+  margin: 40px 20px 20px 20px;
+}
+.login-btn:hover{
+  background-color: #00b300;
+}
+.edit-btn1:hover{
+  background-color: #00b300;
+}
+.ept {
+  background-color: #f2ffcc;
+  border: none;
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 0px 10px 0px;
+  width: 85%;
+  border: 2px solid #f6f6f6;
+  border-radius: 5px 5px 5px 5px;
+}
+.big-font-1
+{
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.alreadyhaveaccount{
+  font-size: 20px;
+  color: #16a083;
+  text-decoration: none;
+  padding-bottom: 10px;
+  padding-top: 30px;
+}
+.alreadyhaveaccount:hover{
+  text-decoration: underline;
+  color: #16a083;
+}
+
+.bottom-button
+{
+  display: flex;
+  flex-direction: column;
+}
