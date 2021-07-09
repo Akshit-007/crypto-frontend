@@ -90,3 +90,71 @@ body{
 {
     padding: auto;
 }
+
+/* crypto main container */
+
+.crypto{
+  width:80%;
+  margin-left: 10%;
+}
+
+/* coin logo */
+
+.coinLogo
+{
+    height:25px;
+    width:25px;
+}
+
+/* cryptoData */
+
+.cryptoData{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+/* table head */
+
+.tableHead
+{
+    background-color: rgb(170, 255, 170);
+}
+
+/* title head */
+
+.headTitle
+{
+    font-size: 15px;
+    font-weight: 200;
+    color:rgba(90, 90, 90, 0.637);
+}
+/* on hover */
+
+.tableRow:hover{
+    border:2px solid green;
+    background-color:rgba(143, 224, 143, 0.637);
+}
+
+
+.timebtn{
+    background-color:white;
+    height:30px;
+    width:80px;
+    color:Black;
+}
+.chooseOption{
+    margin-left: 10%;
+    font-size: 15px;
+}
+#day{
+    background-color:green;
+    color: white;
+}
+.increase{
+    color:green;
+}
+.decrease{
+    color:red;
+}
+
+
