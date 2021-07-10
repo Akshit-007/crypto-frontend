@@ -4,6 +4,7 @@ import Home from './user/home'
 import Signup from './user/signup'
 import Signin  from './user/signin'
 import Profile  from './user/Profile'
+import Favourite  from './user/favourite'
 import EditProfile from './user/editprofile'
 import Privateroute from './auth/privateroute'
 
@@ -17,6 +18,7 @@ const mainrouter = () =>
             <Route exact path="/signin" component={Signin} />
             <Privateroute exact path="/user/:userId" component={Profile} />
             <Privateroute exact path="/user/edit/:userId" component={EditProfile} />
+            <Privateroute exact path="/user/favourite/:userId" component={Favourite} />
             <Redirect to='/' />
         </Switch>
     </div>
