@@ -52,7 +52,21 @@ body{
     padding-bottom: 5px;
     border-bottom: 2px solid #fff;
 }
+.logomain1{max-width: fit-content;
+margin-left: -300px;
+}
+.logomain
+{width: 55px;
+margin-top: 10px;}
 
+.rightside
+{
+    display: flex;
+    width: 80%;
+}
+div.rightside > * {
+    margin-right: 70px;
+}
 .main-container{
     margin-top: 20px;
     width: 96%;
