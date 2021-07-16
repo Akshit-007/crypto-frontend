@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import '../css/style.css'
+import Newsletter from "./Newsletter.js"
 import Nav from "./nav"
 import {fetchCrypto , addToFav }  from './data';
 import { makeStyles } from '@material-ui/core/styles';
