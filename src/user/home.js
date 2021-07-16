@@ -193,9 +193,7 @@ const Home = () => {
 
             </div>
 
-
-            {/* // New Table */}
-
+            <Newsletter />
 
         </>
     );
