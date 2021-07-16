@@ -126,7 +126,7 @@ const Favourite = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {cryptos.length === 0 ? <div><h3>Fetching Data</h3></div> : <>
+                                {cryptos.length === 0 ? <div><h3>there is a no  Data</h3></div> : <>
                                     {cryptos.map((row) => (
                                         <TableRow key={row.rank} className="tableRow">
                                             <TableCell component="th" scope="row">
