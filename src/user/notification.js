@@ -32,7 +32,8 @@ const Notification = ({match}) => {
     }, [])
     return (
         <>
-            <h1>{crypto}</h1>
+            <h1>{crypto}</h1><br/>
+            <h1>enter value in $</h1>
             <form >
             <label for="ubound">upper bound:</label><br/>
             <input type="text" value={upper} onChange={e => setUpper(e.target.value)}/><br/>
