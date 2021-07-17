@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import '../css/style.css'
 import Newsletter from "./Newsletter.js"
 import Nav from "./nav"
@@ -140,6 +141,11 @@ const Home = () => {
                                                     &nbsp;&nbsp; 
                                                     {row.currency}
                                                 </TableCell>
+                                                <Link to={`/notification/${row.currency}`}>
+                                                    {isauthenticated() && <TableCell component="th" scope="row">
+                                                        <button >Notify</button>
+                                                    </TableCell> }
+                                                </Link>
                                                 <TableCell align="left"> 
                                                     <span className="cryptoData"> 
                                                         {currency === 'USD' ? <>$</> : 

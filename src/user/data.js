@@ -54,4 +54,17 @@ const getFav = (userId, token) => {
     .catch(err => console.log(err))
 }
 
-export  {fetchCrypto ,fetchFav , addToFav, getFav } ;
+const postNotify = (notify, userId, token) => {
+    return fetch(`${process.env.REACT_APP_API_URL}/notification/${userId}`, {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(notify)
+    })
+    .then(response => { console.log(response); return response.json() })
+    .catch(err => console.log(err))
+}
+export  {fetchCrypto ,fetchFav , addToFav, getFav ,postNotify } ;
