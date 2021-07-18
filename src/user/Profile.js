@@ -3,7 +3,7 @@ import { isauthenticated } from '../auth'
 import { Redirect, Link } from 'react-router-dom'
 import { read } from './apiuser'
 import "../css/profile.css"
-import Nav  from "./nav"
+import Nav  from "./Nav"
 class Profile extends Component {
 
     constructor() {

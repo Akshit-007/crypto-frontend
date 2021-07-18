@@ -1,12 +1,12 @@
 import React from 'react'
 import {Redirect, Route , Switch} from 'react-router-dom'
-import Home from './user/home'
+import Home from './user/Home'
 import Signup from './user/signup'
 import Signin  from './user/signin'
-import Notification  from './user/notification'
+import Notification  from './user/Notification'
 import Profile  from './user/Profile'
-import Favourite  from './user/favourite'
-import EditProfile from './user/editprofile'
+import Favourite  from './user/Favourite'
+import EditProfile from './user/Editprofile'
 import Privateroute from './auth/privateroute'
 
 const mainrouter = () =>

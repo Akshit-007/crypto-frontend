@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link , Redirect } from 'react-router-dom'
 import '../css/Login.css'
 import {signin , authenticate } from '../auth'
-import Nav from "./nav"
+import Nav from "./Nav"
 
 class Signin extends Component {
 

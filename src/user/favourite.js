@@ -1,21 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import '../css/style.css'
-import Nav from "./nav"
-import {fetchCrypto ,fetchFav , addToFav, getFav }  from './data';
-import { makeStyles } from '@material-ui/core/styles';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
-import { Paper } from '@material-ui/core';
-import { ArrowUpward } from '@material-ui/icons';
-import { ArrowDownward } from '@material-ui/icons';
+import Nav from "./Nav"
+import MainTable from './MainTable';
+import { fetchFav , getFav }  from './data';
 import {isauthenticated} from '../auth'
-
-const useStyles = makeStyles({
-    table: {
-        minWidth: 650,
-    },
-});
-
-
 
 const Favourite = () => {
     const [cryptos, setCryptos] = useState([])
@@ -27,8 +15,6 @@ const Favourite = () => {
 
     function fetch() {
         
-
-
         const token = isauthenticated().token
         const userId = isauthenticated().user._id
         getFav(userId, token)
@@ -77,8 +63,6 @@ const Favourite = () => {
 
 
 
-
-    const classes = useStyles();
     return (
         <>
             <div className="home">
@@ -112,8 +96,21 @@ const Favourite = () => {
                 <br />
 
                 <div className="crypto">
-
-                    <TableContainer component={Paper}>
+                    {cryptos.length === 0 ? (
+                        <>
+                          <h1> Fetching data in favourite</h1>
+                        </>
+                    ) : (
+                        <MainTable 
+                        cryptos={cryptos}
+                        handleTimeChange={handleTimeChange}
+                        handleChangecurrency={handleChangecurrency}
+                        currency={currency}
+                        time={time}
+                        noFav={false}
+                        />
+                    )}
+                    {/* <TableContainer component={Paper}>
                         <Table className={classes.table} aria-label="simple table">
                             <TableHead>
                                 <TableRow className="tableHead">
@@ -148,7 +145,7 @@ const Favourite = () => {
 
                             </TableBody>
                         </Table>
-                    </TableContainer>
+                    </TableContainer> */}
                 </div>
 
             </div>

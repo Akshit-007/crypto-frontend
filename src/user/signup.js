@@ -3,7 +3,7 @@ import '../css/Login.css'
 import { signup } from '../auth'
 import { Link } from 'react-router-dom'
 import '../css/style.css'
-import Nav from "./nav"
+import Nav from "./Nav"
 class Signup extends Component {
 
     constructor() {
