@@ -5,8 +5,7 @@ import Newsletter from "./Newsletter.js"
 import Nav from "./Nav"
 import {fetchCrypto , addToFav }  from './data';
 import {isauthenticated} from '../auth'
-
-
+import { toast } from 'react-toastify';
 
 
 const Home = () => {
@@ -33,11 +32,21 @@ const Home = () => {
         const curr = {
             curr: currency
         }
+        toast.success(` ${currency} added to favourite ` , {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
         const token = isauthenticated().token
         const userId = isauthenticated().user._id
         addToFav(curr, userId, token)
         .then(result => {
             console.log(result)
+
         })
         .catch(err => {
             console.log(err)
@@ -98,10 +107,9 @@ const Home = () => {
                 <div className="crypto">
                     {cryptos.length === 0 ? (
                         <>
-                          <h1> Fetching data</h1>
+                            <h1>Fetching data...</h1>
                         </>
-                    ) : (
-                        <MainTable 
+                      ) :   <MainTable 
                         cryptos={cryptos}
                         addtofav={addtofav}
                         handleTimeChange={handleTimeChange}
@@ -109,89 +117,9 @@ const Home = () => {
                         currency={currency}
                         time={time}
                         noFav={true}
+                        removeFav={false}
                         />
-                    )}
-                    {/* <TableContainer component={Paper}>
-                        <Table className={classes.table} aria-label="simple table">
-                            <TableHead>
-                                <TableRow className="tableHead">
-                                    <TableCell><span className="headTitle">#</span></TableCell>
-                                    <TableCell align="left"><span className="headTitle">NAME</span></TableCell>
-                                    <TableCell align="left"><span className="headTitle">PRICE&nbsp;  ({currency})</span></TableCell>
-                                    <TableCell align="left"><span className="headTitle">MARKET CAP&nbsp;  ({currency})</span></TableCell>
-                                    <TableCell align="left"><span className="headTitle">CHANGE&nbsp;({time})</span></TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {   cryptos.length === 0 ? <div><h3>Fetching Data</h3></div> : 
-                                    <>
-                                    {
-                                        cryptos.map((row) => (
-                                            <TableRow key={row.rank} className="tableRow">
-                                                <TableCell component="th" scope="row">
-                                                    <span className="cryptoData"> {row.rank}</span>
-                                                </TableCell>
-                                                <TableCell align="left">
-                                                    {<img src={row.logo_url} className="coinLogo" alt="img"></img>}
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <span className="cryptoData">{row.name}</span>
-                                                    &nbsp;&nbsp; 
-                                                    {row.currency}
-                                                </TableCell>
-                                                <Link to={`/notification/${row.currency}`}>
-                                                    {isauthenticated() && <TableCell component="th" scope="row">
-                                                        <button >Notify</button>
-                                                    </TableCell> }
-                                                </Link>
-                                                <TableCell align="left"> 
-                                                    <span className="cryptoData"> 
-                                                        {currency === 'USD' ? <>$</> : 
-                                                        <>  
-                                                            {currency === 'INR' ? <>₹</> : <>ē</>}
-                                                        </>}
-                                                        &nbsp;&nbsp;
-                                                        {row.price < 1 ? parseFloat(row.price).toFixed(5) : 
-                                                            parseFloat(row.price).toFixed(2)}
-                                                    </span>
-                                                </TableCell>
-                                                <TableCell align="left"> 
-                                                    <span className="cryptoData"> 
-                                                        {parseFloat(row.market_cap / 1000000000).toFixed(2)} B
-                                                    </span>
-                                                </TableCell>
-                                                <TableCell align="left"> 
-                                                    <span className="cryptoData">
-                                                        {   time === '1d' ? 
-                                                                <>  {parseFloat(row["1d"].price_change_pct) > 0 ? 
-                                                                    <>
-                                                                    <span className="increase"><ArrowUpward />&nbsp;{row["1d"].price_change_pct}</span>
-                                                                    </>                 : 
-                                                                    <>
-                                                                    <span className="decrease"><ArrowDownward />&nbsp;{row["1d"].price_change_pct}</span>
-                                                                    </>}
-                                                                </>           : 
-                                                                <>  {parseFloat(row["30d"].price_change_pct) > 0 ? 
-                                                                    <>
-                                                                    <span className="increase"><ArrowUpward />&nbsp;{row["30d"].price_change_pct}</span>
-                                                                    </>                  : 
-                                                                    <>
-                                                                    <span className="decrease"><ArrowDownward />&nbsp;{row["30d"].price_change_pct}</span>
-                                                                    </>}
-                                                                </>
-                                                        } %
-                                                    </span>
-                                                </TableCell>
-                                                {isauthenticated() && <TableCell component="th" scope="row">
-                                                    <button onClick={() => (addtofav(row.currency))} ></button>
-                                                </TableCell> }
-                                            </TableRow>
-                                        ))
-                                    }
-                                    </>
-                                }
-                            </TableBody>
-                        </Table>
-                    </TableContainer> */}
+                    }
                 </div>
 
             </div>

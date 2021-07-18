@@ -11,7 +11,7 @@ const useStyles = makeStyles({
         minWidth: 650,
     },
 });
-const MainTable = ({cryptos, addtofav, noFav, handleTimeChange,handleChangecurrency , currency , time}) => {
+const MainTable = ({cryptos, addtofav, noFav, handleTimeChange,handleChangecurrency , currency , removefromfav , time, removeFav}) => {
     const classes = useStyles();
     return (
         <>
@@ -87,6 +87,9 @@ const MainTable = ({cryptos, addtofav, noFav, handleTimeChange,handleChangecurre
                                                 </TableCell>
                                                 {noFav && isauthenticated() && <TableCell component="th" scope="row">
                                                     <button onClick={() => (addtofav(row.currency))} >Add To Fav</button>
+                                                </TableCell> }
+                                                {removeFav && isauthenticated() && <TableCell component="th" scope="row">
+                                                    <button onClick={() => (removefromfav(row.currency))} >Remove from Fav</button>
                                                 </TableCell> }
                                             </TableRow>
                                         ))
