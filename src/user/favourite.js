@@ -4,6 +4,7 @@ import Nav from "./Nav"
 import MainTable from './MainTable';
 import { fetchFav , getFav, removeFromFav }  from './data';
 import {isauthenticated} from '../auth'
+import { toast } from 'react-toastify';
 
 const Favourite = () => {
     const [cryptos, setCryptos] = useState([])
@@ -18,6 +19,16 @@ const Favourite = () => {
         const curr = {
             curr: currency
         }
+        toast.error(` ${currency} remove from favourite ` , {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            
+        });
         const token = isauthenticated().token
         const userId = isauthenticated().user._id
         removeFromFav(curr, userId, token)

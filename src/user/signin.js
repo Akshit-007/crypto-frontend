@@ -67,10 +67,10 @@ class Signin extends Component {
         if (redirecttorefer)
             return <Redirect to="/" />
         return (
-
+            <>
+            <Nav/>
             <div className="position" style={{height:'100vh'}}>
                 
-                <Nav/>
 
                 <div className="formContent">
                     <h2 className="loginnameh2"> SIGN-IN </h2>
@@ -85,6 +85,7 @@ class Signin extends Component {
                     {this.signinform(email, password)}
                 </div>
             </div>
+            </>
         );
     }
 }

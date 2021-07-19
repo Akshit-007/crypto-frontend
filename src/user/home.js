@@ -32,14 +32,14 @@ const Home = () => {
         const curr = {
             curr: currency
         }
-        toast.success(` ${currency} added to favourite ` , {
+        toast.info(` ${currency} added to favourite ` , {
             position: "top-right",
             autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
-            progress: undefined,
+            progress: undefined
         });
         const token = isauthenticated().token
         const userId = isauthenticated().user._id

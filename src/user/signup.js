@@ -83,11 +83,9 @@ class Signup extends Component {
     render() {
         const { name, email, password, cpassword, address ,  error, open } = this.state
         return (
-
+            <>
+            <Nav/>
             <div className="position">
-
-                <Nav/>
-
                 <div className="formContent formContent1 ">
                     <h2 className="loginnameh2"> SIGN UP </h2>
 
@@ -102,6 +100,7 @@ class Signup extends Component {
                     {this.signupform(name, email, password , cpassword , address)}
                 </div>
             </div>
+            </>
         );
     }
 }
