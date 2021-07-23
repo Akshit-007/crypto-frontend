@@ -3,7 +3,7 @@ import { isauthenticated } from '../auth'
 import { Redirect, Link } from 'react-router-dom'
 import { read } from './apiuser'
 import "../css/profile.css"
-import Nav  from "./Nav"
+import Nav from "./nav.js"
 class Profile extends Component {
 
     constructor() {
@@ -44,7 +44,7 @@ class Profile extends Component {
                             <ul className="UserMenu">
                                 <Link className="Link" to={`/user/edit/${user._id}`} >
                                     Edit Profile
-                                    </Link>
+                                </Link>
                             </ul>
                         </div>
                     </div>

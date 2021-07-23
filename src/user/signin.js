@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Link , Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import '../css/Login.css'
-import {signin , authenticate } from '../auth'
-import Nav from "./Nav"
+import { signin, authenticate } from '../auth'
+import Nav from "./nav.js"
 
 class Signin extends Component {
 
@@ -52,39 +52,38 @@ class Signin extends Component {
                             value={password} />
                     </div>
                     <div className="bottom-button">
-                    <button onClick={this.clicksubmit} className="login-btn" type="submit">Log In</button>
-                    <Link className="alreadyhaveaccount" to="./signup" >Don't have an account?</Link>
+                        <button onClick={this.clicksubmit} className="login-btn" type="submit">Log In</button>
+                        <Link className="alreadyhaveaccount" to="./signup" >Don't have an account?</Link>
                     </div>
                 </form>
             </div>
         </>
     )
 
-    render() 
-    {
+    render() {
         const { email, password, error, redirecttorefer, loading } = this.state
 
         if (redirecttorefer)
             return <Redirect to="/" />
         return (
             <>
-            <Nav/>
-            <div className="position" style={{height:'100vh'}}>
-                
+                <Nav />
+                <div className="position" style={{ height: '100vh' }}>
 
-                <div className="formContent">
-                    <h2 className="loginnameh2"> SIGN-IN </h2>
-                    <div className="alert alert-danger" style={{ display: error ? "" : "none" }}>
-                        {error}
+
+                    <div className="formContent">
+                        <h2 className="loginnameh2"> SIGN-IN </h2>
+                        <div className="alert alert-danger" style={{ display: error ? "" : "none" }}>
+                            {error}
+                        </div>
+                        {loading ? (<div className=" text-center">
+                            <h2 className="loginnameh2">Loading....</h2>
+                        </div>)
+                            : ("")
+                        }
+                        {this.signinform(email, password)}
                     </div>
-                    {loading ? (<div className=" text-center">
-                        <h2 className="loginnameh2">Loading....</h2>
-                    </div>)
-                        : ("")
-                    }
-                    {this.signinform(email, password)}
                 </div>
-            </div>
             </>
         );
     }

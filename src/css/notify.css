@@ -1,0 +1,70 @@
+.notify{
+    min-height: 500px;
+    width:100%;
+    background-color:rgb(157, 241, 157);
+}
+.notifyHead
+{
+    font-size: 30px;
+    padding-left:12%;
+}
+.b_notify{
+    font-weight:800;
+    color:white;
+}
+
+.notify_info{
+    margin-left: 12%;
+    width:80%;
+
+}
+.notify_info_head
+{
+    font-size: 20px;
+    font-weight: 400;
+}
+.notify_buy_sell
+{
+    width:400px;
+}
+.n_buy
+{
+    font-size:20px;
+    height:50px;
+}
+.n_sell
+{
+    font-size:20px;
+    height:50px;
+    border:1px solid black;
+}
+
+.label_buy
+{
+    font-size:25px;
+}
+.sign{
+font-size:30px;
+}
+.label_input{
+    font-size:25px;
+
+}
+.notifyButton
+{
+    width:150px;
+    height:40px;
+    font-size:20px;
+    border-radius:20px ;
+    border:1px solid green;
+    background-color:white;
+    color:green;
+    font-weight: 500;
+}
+
+.notifyButton:hover{
+    background-color:green;
+     border:1px solid white;
+     color:white;
+     
+}

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import '../css/style.css'
-import MainTable  from './MainTable'
+import MainTable from './MainTable'
 import Newsletter from "./Newsletter.js"
-import Nav from "./Nav"
-import {fetchCrypto , addToFav }  from './data';
-import {isauthenticated} from '../auth'
+import Nav from "./nav.js"
+import { fetchCrypto, addToFav } from './data';
+import { isauthenticated } from '../auth'
 import { toast } from 'react-toastify';
+import { CircularProgress } from '@material-ui/core';
 
 
 const Home = () => {
@@ -13,12 +14,14 @@ const Home = () => {
     const [reload, setReload] = useState(false)
     const [currency, setCurrency] = useState('USD')
     const [time, setTime] = useState('1d')
+    const [load, setLoad] = useState(false)
 
     setInterval(() => { setReload(!reload) }, 10000);
 
     const fetch = () => {
+
         fetchCrypto(currency)
-            .then(data => { setCryptos(data) })
+            .then(data => { setCryptos(data) }, setLoad(false))
             .catch(err => console.log(err))
     }
 
@@ -26,13 +29,14 @@ const Home = () => {
     // console.log(cryptos);
 
     function handleChangecurrency(event) {
+        setLoad(true);
         setCurrency(event.target.value);
     }
     function addtofav(currency) {
         const curr = {
             curr: currency
         }
-        toast.info(` ${currency} added to favourite ` , {
+        toast.info(` ${currency} added to favourite `, {
             position: "top-right",
             autoClose: 3000,
             hideProgressBar: false,
@@ -44,16 +48,17 @@ const Home = () => {
         const token = isauthenticated().token
         const userId = isauthenticated().user._id
         addToFav(curr, userId, token)
-        .then(result => {
-            console.log(result)
+            .then(result => {
+                console.log(result)
 
-        })
-        .catch(err => {
-            console.log(err)
-        })
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
     function handleTimeChange(event) {
         event.preventDefault();
+        setLoad(true)
         setTime(event.target.value);
         // console.log(time);
 
@@ -82,6 +87,7 @@ const Home = () => {
                 <br />
                 <br />
 
+
                 <div className="chooseOption">
 
                     <form >
@@ -103,13 +109,12 @@ const Home = () => {
                 <br />
                 <br />
                 <br />
-
-                <div className="crypto">
+                {load ? <div className="spinner"><CircularProgress /></div> : <div className="crypto">
                     {cryptos.length === 0 ? (
                         <>
                             <h1>Fetching data...</h1>
                         </>
-                      ) :   <MainTable 
+                    ) : <MainTable
                         cryptos={cryptos}
                         addtofav={addtofav}
                         handleTimeChange={handleTimeChange}
@@ -118,9 +123,16 @@ const Home = () => {
                         time={time}
                         noFav={true}
                         removeFav={false}
-                        />
+                    />
                     }
                 </div>
+                }
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+
 
             </div>
 
