@@ -4,6 +4,8 @@ import { Redirect, Link } from 'react-router-dom'
 import { read } from './apiuser'
 import "../css/profile.css"
 import Nav from "./nav.js"
+import Dummyfooter from './dummyfooter.js'
+
 class Profile extends Component {
 
     constructor() {
@@ -90,6 +92,10 @@ class Profile extends Component {
                         </div>
                     </div>
                 </div>
+                <br />
+                <br />
+                <br />
+                <Dummyfooter />
             </>
         );
     }

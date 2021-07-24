@@ -6,6 +6,7 @@ import { fetchFav, getFav, removeFromFav } from './data';
 import { isauthenticated } from '../auth'
 import { toast } from 'react-toastify';
 import { CircularProgress } from '@material-ui/core';
+import Dummyfooter from './dummyfooter.js'
 
 
 const Favourite = () => {
@@ -53,7 +54,6 @@ const Favourite = () => {
         getFav(userId, token)
             .then(result => {
                 setFavString(result.fav)
-                setLoading(true)
                 fetch()
             })
             .catch(err => {
@@ -65,14 +65,13 @@ const Favourite = () => {
         fetchFav(favString, currency)
             .then(data => {
                 setCryptos(data)
-                setLoading(false)
             })
             .catch(err => {
                 console.log(err)
             })
     }
     useEffect(() => { fetchString() }, [])
-    useEffect(() => { setLoading(true); fetch() }, [currency, reload])
+    useEffect(() => { fetch() }, [currency, reload])
     // console.log(cryptos);
 
     function handleChangecurrency(event) {
@@ -157,7 +156,10 @@ const Favourite = () => {
 
 
             </div>
-
+            <br />
+            <br />
+            <br />
+            <Dummyfooter />
 
             {/* // New Table */}
 

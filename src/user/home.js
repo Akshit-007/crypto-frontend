@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import '../css/style.css'
 import MainTable from './MainTable'
 import Newsletter from "./Newsletter.js"
+import Footer from "./footer"
 import Nav from "./nav.js"
 import { fetchCrypto, addToFav } from './data';
 import { isauthenticated } from '../auth'
@@ -137,6 +138,8 @@ const Home = () => {
             </div>
 
             <Newsletter />
+            <Footer />
+
 
         </>
     );
