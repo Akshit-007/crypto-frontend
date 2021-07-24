@@ -6,8 +6,8 @@ import { isauthenticated, signout } from '../auth'
 const Nav = () => {
     return (
         <>
-            <nav className="nav" >
-                <div className="nav-container">
+            <nav className="navbar" >
+                <div className="navbar-container">
                     <div className="logomain1">
                         <img src={foodlogohome} alt="food-logo" className="logomain" />
                     </div>

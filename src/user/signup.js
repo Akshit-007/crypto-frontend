@@ -3,7 +3,7 @@ import '../css/Login.css'
 import { signup } from '../auth'
 import { Link } from 'react-router-dom'
 import '../css/style.css'
-import Nav from "./Nav"
+import Nav from "./nav.js"
 class Signup extends Component {
 
     constructor() {
@@ -14,7 +14,7 @@ class Signup extends Component {
             email: "",
             password: "",
             cpassword: "",
-            address:"",
+            address: "",
             error: "",
             open: false
         }
@@ -28,8 +28,8 @@ class Signup extends Component {
 
     clicksubmit = event => {
         event.preventDefault();
-        const { name, email, password , cpassword , address} = this.state;
-        const user = { name, email, password , cpassword , address };
+        const { name, email, password, cpassword, address } = this.state;
+        const user = { name, email, password, cpassword, address };
         // console.log(user);
         signup(user).then(data => {
             if (data.error)
@@ -47,7 +47,7 @@ class Signup extends Component {
         });
     };
 
-    signupform = (name, email, password , cpassword , address) =>
+    signupform = (name, email, password, cpassword, address) =>
     (
 
         <>
@@ -69,11 +69,11 @@ class Signup extends Component {
                             value={cpassword} />
                     </div>
                     <div className="form-group">
-                    <textarea onChange={this.handlechange("address")} type="text" className="ept" placeholder="address" value={address} />
+                        <textarea onChange={this.handlechange("address")} type="text" className="ept" placeholder="address" value={address} />
                     </div>
                     <div className="bottom-button">
-                    <button onClick={this.clicksubmit} className="login-btn" type="submit">SIGN UP</button>
-                    <div id="formFooter"><Link to="/signin"  className="alreadyhaveaccount">Already have an ACCOUNT?</Link></div>
+                        <button onClick={this.clicksubmit} className="login-btn" type="submit">SIGN UP</button>
+                        <div id="formFooter"><Link to="/signin" className="alreadyhaveaccount">Already have an ACCOUNT?</Link></div>
                     </div>
                 </form>
             </div>
@@ -81,25 +81,25 @@ class Signup extends Component {
     )
 
     render() {
-        const { name, email, password, cpassword, address ,  error, open } = this.state
+        const { name, email, password, cpassword, address, error, open } = this.state
         return (
             <>
-            <Nav/>
-            <div className="position">
-                <div className="formContent formContent1 ">
-                    <h2 className="loginnameh2"> SIGN UP </h2>
+                <Nav />
+                <div className="position">
+                    <div className="formContent formContent1 ">
+                        <h2 className="loginnameh2"> SIGN UP </h2>
 
-                    <div className="alert alert-danger big-font-1" style={{ display: error ? "" : "none" }}>
-                        {error}
+                        <div className="alert alert-danger big-font-1" style={{ display: error ? "" : "none" }}>
+                            {error}
+                        </div>
+
+                        <div className="alert alert-info big-font-1" style={{ display: open ? "" : "none" }}>
+                            New account has successfully created.please {" "} <Link to="/signin">sign in</Link>.
+                        </div>
+
+                        {this.signupform(name, email, password, cpassword, address)}
                     </div>
-
-                    <div className="alert alert-info big-font-1" style={{ display: open ? "" : "none" }}>
-                        New account has successfully created.please {" "} <Link to="/signin">sign in</Link>.
-                    </div>
-
-                    {this.signupform(name, email, password , cpassword , address)}
                 </div>
-            </div>
             </>
         );
     }
