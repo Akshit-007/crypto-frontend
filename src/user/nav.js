@@ -8,7 +8,16 @@ const Nav = () => {
         <>
             <nav className="navbar" >
                 <div className="navbar-container">
+                <input type="checkbox" className='checkBox' />
+                    <div className="hamburger-lines">
+                        <span className="line line1"></span>
+                        <span className="line line2"></span>
+                        <span className="line line3"></span>
+                    </div>
+                    <div className="left">
                         <h1>Crypto Tracker</h1>
+                    </div>
+                    <div className="right">
                         <li><Link to="/">Home</Link></li>
                         {!isauthenticated() && (
                             <>
@@ -23,6 +32,7 @@ const Nav = () => {
                                 <li><a href="?" onClick={() => signout(() => this.props.history.push('/'))}>signout</a></li>
                             </>
                         )}
+                    </div>
                 </div>
             </nav>
         </>

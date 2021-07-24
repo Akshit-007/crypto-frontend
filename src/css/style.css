@@ -21,6 +21,7 @@ body{
     background-color: rgb(224, 224, 183);
     height: 100%;
 }
+.navbar input[type='checkbox'],.navbar .hamburger-lines{display: none;}
 .navbar{
     box-shadow: 0px 5px 10px 0px #d1c9c9;
     background-color: black;  
@@ -58,14 +59,16 @@ margin-left: -300px;
 .logomain
 {width: 55px;
 margin-top: 10px;}
-
-.rightside
+.left
+{
+    margin-left: -300px;
+}
+.right
 {
     display: flex;
-    width: 80%;
 }
-div.rightside > * {
-    margin-right: 70px;
+div.right > *{
+    margin-right: 50px;
 }
 .main-container{
     margin-top: 20px;
@@ -228,4 +231,60 @@ div.rightside > * {
     color:white;
     order:1px solid white;
 }
+@media(max-width: 1100px)
+{
+    .left
+    {
+        margin-left: -250px;
+        
+    }
+    div.right > *{
+        margin-right: 40px;
+    }
+}
+@media(max-width: 1005px)
+{
+    .left
+    {
+        margin-left: -200px;
+    }
+    .right
+    {
+        margin-right: -90px;
+    }
+    div.right > *{
+        margin-right: 20px;
+    }
+}
+@media(max-width: 850px)
+{
+    .left
+    {
+        margin-left: -180px;
+    }
+    .right
+    {
+        margin-right: -130px;
+    }
+    div.right > *{
+        margin-right: 10px;
+    }
+}
+@media(max-width: 700px)
+{
+    .left
+    {
+        margin-left: -140px;
+    }
+    .right
+    {
+        margin-right: -130px;
+    }
+    div.right > *{
+        margin-right: 10px;
+    }
+}
+@media(max-width: 550px)
+{
 
+}
