@@ -8,10 +8,7 @@ const Nav = () => {
         <>
             <nav className="navbar" >
                 <div className="navbar-container">
-                    <div className="logomain1">
-                        <img src={foodlogohome} alt="food-logo" className="logomain" />
-                    </div>
-                    <div className="rightside">
+                        <h1>Crypto Tracker</h1>
                         <li><Link to="/">Home</Link></li>
                         {!isauthenticated() && (
                             <>
@@ -26,7 +23,6 @@ const Nav = () => {
                                 <li><a href="?" onClick={() => signout(() => this.props.history.push('/'))}>signout</a></li>
                             </>
                         )}
-                    </div>
                 </div>
             </nav>
         </>

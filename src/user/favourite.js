@@ -26,7 +26,7 @@ const Favourite = () => {
         }
         toast.error(` ${currency} remove from favourite `, {
             position: "top-right",
-            autoClose: 3000,
+            autoClose: 8000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
