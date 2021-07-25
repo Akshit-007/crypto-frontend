@@ -65,22 +65,6 @@ class Profile extends Component {
                                     </tr>
                                     <tr>
                                         <td className="Title">
-                                            <h3>Address</h3>
-                                        </td>
-                                        <td>
-                                            <p className="value">{user.address}</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="Title">
-                                            <h3>Gender</h3>
-                                        </td>
-                                        <td>
-                                            <p className="value"> {user.gender}</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="Title">
                                             <h3>Joining Date</h3>
                                         </td>
                                         <td>

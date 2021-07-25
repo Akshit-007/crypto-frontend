@@ -14,11 +14,11 @@ class EditProfile extends Component {
             id: "",
             name: "",
             email: "",
+            password: "",
+            cpassword: "",
             redirecttoprofile: false,
             error:"",
             loading:false,
-            address: "",
-            gender:"",
         }
     }
 
@@ -30,8 +30,7 @@ class EditProfile extends Component {
                     this.setState({ redirecttoprofile: true })
                 else
                     this.setState({
-                        id: data._id, name: data.name, email: data.email, error: '' , address: data.address,
-                        gender:data.gender,
+                        id: data._id, name: data.name, email: data.email, error: '' ,
                     });
             });
     };
@@ -43,7 +42,7 @@ class EditProfile extends Component {
     }
 
     isvalid = () => {
-        const { name, email } = this.state
+        const { name, email, password } = this.state
         if (name.length === 0) {
             this.setState({ error: "name is required" , loading: false });
             return false;
@@ -51,6 +50,10 @@ class EditProfile extends Component {
         if(!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/i.test(email)) 
         {
             this.setState({ error: "email is not valid please enter valid email" , loading: false });
+            return false;
+        }
+        if (password.length >= 1 && password.length <= 5) {
+            this.setState({ error: "minimum length of password is 6 . so enter big password" , loading: false });
             return false;
         }
         return true;
@@ -79,7 +82,7 @@ class EditProfile extends Component {
         }
     };
 
-    signupform = (name, email ,address) =>
+    signupform = (name, email, password, cpassword) =>
     (
         <div className="container position" style={{height: '72vh' 
         , marginBottom: '20px'
@@ -95,16 +98,13 @@ class EditProfile extends Component {
                         <input onChange={this.handlechange("email")} type="email" className="ept" id="login" placeholder="Login-ID" value={email} />
                     </div> 
                     <div className="form-group">
-                        <textarea onChange={this.handlechange("address")} type="text" className="ept" placeholder="address" value={address} />
+                        <input onChange={this.handlechange("password")} type="password" id="password" className="ept" placeholder="Password"
+                            value={password} />
                     </div>
                     <div className="form-group">
-                    <fieldset className="FieldSet ept">
-                        Gender:
-                        <input type='radio'  onClick={this.handlechange("gender")}  value='male' className="edit-img-profile" name='gender' />Male
-                        <input type='radio' onClick={this.handlechange("gender")}  value='female' className="edit-img-profile" name='gender'/>Female
-                    </fieldset>
+                        <input onChange={this.handlechange("cpassword")} type="password" id="cpassword" className="ept" placeholder="confirm Password"
+                            value={cpassword} />
                     </div>
-                    
                     <button onClick={this.clicksubmit} className="edit-btn1" type="submit">UPDATE</button>
                 </form>
             </div>
@@ -113,7 +113,7 @@ class EditProfile extends Component {
 
 
     render() {
-        const { id, name, email, redirecttoprofile, error , loading , address,gender} = this.state;
+        const { id, name, email, password, cpassword, redirecttoprofile, error , loading } = this.state;
 
         if (redirecttoprofile)
             return <Redirect to={`/user/${id}`} />;
@@ -131,7 +131,7 @@ class EditProfile extends Component {
                     </div>)
                         : ("")
                 }
-                {this.signupform(name, email, address,gender)}
+                {this.signupform(name, email, password, cpassword)}
             </div>
         );
     }
