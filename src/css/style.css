@@ -250,13 +250,13 @@ div.right > *{
     }
     .right
     {
-        margin-right: -90px;
+        margin-right: 00px;
     }
     div.right > *{
         margin-right: 20px;
     }
 }
-@media(max-width: 850px)
+@media(max-width: 900px)
 {
     .left
     {
@@ -264,7 +264,7 @@ div.right > *{
     }
     .right
     {
-        margin-right: -130px;
+        margin-right: -180px;
     }
     div.right > *{
         margin-right: 10px;
@@ -272,19 +272,92 @@ div.right > *{
 }
 @media(max-width: 700px)
 {
-    .left
-    {
-        margin-left: -140px;
+    .navbar .hamburger-lines{
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        height: 30px;
+        justify-content: space-between;
+        z-index: 5;
+        
+    } 
+    .navbar input[type='checkbox']{
+        display: block;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        height: 30px;
+        width: 40px;
+        z-index:9;
+        opacity: 0;
     }
-    .right
-    {
-        margin-right: -130px;
-    }
-    div.right > *{
-        margin-right: 10px;
-    }
-}
-@media(max-width: 550px)
-{
 
+    .hamburger-lines .line{
+        width: 40px;
+        border: 2px solid rgb(231, 222, 222);
+        
+    }
+    .line1{
+        transform-origin: 0% 0%;
+        transition: 0.3s all ease-in-out;
+    }
+    .line3{
+        transform-origin: 0% 100%;
+        transition: 0.3s all ease-in-out;
+    }
+    .line2{
+        transition: 0.3s all ease-in;
+    }
+    .navbar input[type='checkbox']:checked ~ .hamburger-lines .line1{
+        transform: rotate(45deg);
+    }
+    .navbar input[type='checkbox']:checked ~ .hamburger-lines .line3{
+
+        transform: rotate(-45deg);
+    }
+    .navbar input[type='checkbox']:checked ~ .hamburger-lines .line2{
+
+        transform: scale(0);
+    }
+    .navbar-container{
+        display: flex;
+        flex-direction: row;
+    }
+    .navbar-container .menu-items{
+        background: #222;
+        width: 40%;
+        min-width: 200px;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        height: 100vh;
+        padding-left: 10px;
+        flex-direction: column;
+        padding-top: 50px;
+        transform: translateX(-150%);
+        transition: 0.5s all ease-in;
+    }
+    .navbar-container .menu-items .left
+    {
+        margin-left: 10px;
+    }
+    .navbar-container .menu-items .right
+    {
+        flex-direction: column;
+    }
+    .navbar-container .menu-items li{
+        padding-bottom: 5px;
+        padding: 5px;
+        margin-bottom: 2px;
+        font-size: 16px;   
+    }
+    .navbar-container .menu-items li:hover{border: none;}
+    .navbar-container .checkBox:checked ~ .hamburger-lines .line{
+        border: 2px solid #fff;
+    }
+    .navbar-container .checkBox:checked ~ .menu-items{
+        transform: translateX(0%);
+    }
 }
