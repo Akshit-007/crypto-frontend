@@ -68,3 +68,42 @@ font-size:30px;
      color:white;
      
 }
+
+@media only screen and (max-width: 500px) {
+  .notifyHead
+  {
+      font-size: 20px;
+  }
+  .notify_buy_sell
+  {
+    width:300px;
+  }
+  .label_input
+  {
+      width:220px;
+      font-size:15px;
+  }
+
+}
+@media only screen and (max-width: 350px) {
+  .notifyHead
+  {
+      font-size: 18px;
+      
+    padding-left:5%;
+  }
+  .notify_buy_sell
+  {
+    width:250px;
+  }
+  .label_input
+  {
+      width:180px;
+      font-size:13px;
+  }
+  .notify_info{
+    margin-left: 5%;
+    width:80%;
+
+}
+}

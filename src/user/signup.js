@@ -14,12 +14,10 @@ class Signup extends Component {
             email: "",
             password: "",
             cpassword: "",
-            address: "",
             error: "",
             open: false
         }
     }
-    // aa function ma je change kariye e event ma assign thay che etle event lakhvu pade
     handlechange = (name) => event => {
         this.setState({ error: "" })
         this.setState({ [name]: event.target.value })
@@ -28,9 +26,9 @@ class Signup extends Component {
 
     clicksubmit = event => {
         event.preventDefault();
-        const { name, email, password, cpassword, address } = this.state;
-        const user = { name, email, password, cpassword, address };
-        // console.log(user);
+        const { name, email, password, cpassword } = this.state;
+        const user = { name, email, password, cpassword };
+        
         signup(user).then(data => {
             if (data.error)
                 this.setState({ error: data.error });
@@ -41,13 +39,12 @@ class Signup extends Component {
                     email: "",
                     password: "",
                     cpassword: "",
-                    address: "",
                     open: true
                 });
         });
     };
 
-    signupform = (name, email, password, cpassword, address) =>
+    signupform = (name, email, password, cpassword) =>
     (
 
         <>
@@ -68,9 +65,6 @@ class Signup extends Component {
                         <input onChange={this.handlechange("cpassword")} type="password" id="cpassword" className="ept" placeholder="confirm Password"
                             value={cpassword} />
                     </div>
-                    <div className="form-group">
-                        <textarea onChange={this.handlechange("address")} type="text" className="ept" placeholder="address" value={address} />
-                    </div>
                     <div className="bottom-button">
                         <button onClick={this.clicksubmit} className="login-btn" type="submit">SIGN UP</button>
                         <div id="formFooter"><Link to="/signin" className="alreadyhaveaccount">Already have an ACCOUNT?</Link></div>
@@ -81,13 +75,12 @@ class Signup extends Component {
     )
 
     render() {
-        const { name, email, password, cpassword, address, error, open } = this.state
+        const { name, email, password, cpassword, error, open } = this.state
         return (
             <>
                 <Nav />
                 <div className="position">
                     <div className="formContent formContent1 ">
-                        <h2 className="loginnameh2"> SIGN UP </h2>
 
                         <div className="alert alert-danger big-font-1" style={{ display: error ? "" : "none" }}>
                             {error}
@@ -97,7 +90,7 @@ class Signup extends Component {
                             New account has successfully created.please {" "} <Link to="/signin">sign in</Link>.
                         </div>
 
-                        {this.signupform(name, email, password, cpassword, address)}
+                        {this.signupform(name, email, password, cpassword)}
                     </div>
                 </div>
             </>
