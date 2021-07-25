@@ -34,7 +34,7 @@ const Notification = ({ match, props }) => {
 
         postNotify(notify, userId, token)
             .then((data) => {
-                console.log(data)
+                // console.log(data)
                 setUpper("")
                 setLower("")
             })
