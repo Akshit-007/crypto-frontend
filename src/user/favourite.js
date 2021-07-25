@@ -18,7 +18,7 @@ const Favourite = () => {
     const [loading, setLoading] = useState(false)
     const [noFav, setNoFav] = useState(false)
 
-    setInterval(() => { setReload(!reload) }, 10000);
+    setInterval(() => { setReload(!reload) }, 30000);
 
     function removefromfav(currency) {
         setLoading(true);
@@ -27,7 +27,7 @@ const Favourite = () => {
         }
         toast.error(` ${currency} remove from favourite `, {
             position: "top-right",
-            autoClose: 8000,
+            autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
