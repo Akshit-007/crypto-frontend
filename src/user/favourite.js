@@ -16,6 +16,7 @@ const Favourite = () => {
     const [time, setTime] = useState('1d')
     const [favString, setFavString] = useState(null)
     const [loading, setLoading] = useState(false)
+    const [noFav, setNoFav] = useState(false)
 
     setInterval(() => { setReload(!reload) }, 10000);
 
@@ -32,14 +33,20 @@ const Favourite = () => {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-
+            style: {
+                fontSize: 15
+            }
         });
         const token = isauthenticated().token
         const userId = isauthenticated().user._id
         removeFromFav(curr, userId, token)
             .then(result => {
-                console.log(result)
+                let newCryptos = cryptos.filter(c => c.currency != currency)
+                setCryptos(newCryptos)
                 setFavString(favString.replace(currency, ""))
+                if(newCryptos.length == 0) {
+                    setNoFav(true)
+                }
                 setLoading(false)
             })
             .catch(err => {
@@ -53,8 +60,14 @@ const Favourite = () => {
         const userId = isauthenticated().user._id
         getFav(userId, token)
             .then(result => {
-                setFavString(result.fav)
-                fetch()
+                if(result.check == true) {
+                    setNoFav(true)
+                }
+                else {
+                    setNoFav(false)
+                    setFavString(result.fav)
+                    fetch()
+                }
             })
             .catch(err => {
                 console.log(err)
@@ -134,22 +147,30 @@ const Favourite = () => {
                 <br />
 
                 {loading ? <div className="spinner"><CircularProgress /></div> : <div className="crypto">
-                    {cryptos.length === 0 ?
+                    {noFav == true ? (
                         <>
-                            <h1>Fetching Data...</h1>
+                            <h1>No Favorites Added :)</h1>
                         </>
-                        :
-                        <MainTable
-                            cryptos={cryptos}
-                            handleTimeChange={handleTimeChange}
-                            handleChangecurrency={handleChangecurrency}
-                            currency={currency}
-                            time={time}
-                            noFav={false}
-                            removefromfav={removefromfav}
-                            removeFav={true}
-                        />
-                    }
+                    ) : (
+                        <>
+                        {cryptos.length == 0 ?
+                            <>
+                                <h1>Fetching Data...</h1>
+                            </>
+                            :
+                            <MainTable
+                                cryptos={cryptos}
+                                handleTimeChange={handleTimeChange}
+                                handleChangecurrency={handleChangecurrency}
+                                currency={currency}
+                                time={time}
+                                noFav={false}
+                                removefromfav={removefromfav}
+                                removeFav={true}
+                            />
+                        }
+                        </>
+                    )}
 
                 </div>}
 

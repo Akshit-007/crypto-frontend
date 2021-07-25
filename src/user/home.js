@@ -4,7 +4,7 @@ import MainTable from './MainTable'
 import Newsletter from "./Newsletter.js"
 import Footer from "./footer"
 import Nav from "./nav.js"
-import { fetchCrypto, addToFav } from './data';
+import { fetchCrypto, addToFav, addToSub, getSub, removeFromSub } from './data';
 import { isauthenticated } from '../auth'
 import { toast } from 'react-toastify';
 import { CircularProgress } from '@material-ui/core';
@@ -16,6 +16,8 @@ const Home = () => {
     const [currency, setCurrency] = useState('USD')
     const [time, setTime] = useState('1d')
     const [load, setLoad] = useState(false)
+    const [sub, setSub] = useState("")
+    const [subCheck, setSubCheck] = useState(false)
 
     setInterval(() => { setReload(!reload) }, 10000);
 
@@ -37,26 +39,62 @@ const Home = () => {
         const curr = {
             curr: currency
         }
-        toast.info(` ${currency} added to favourite `, {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined
-        });
         const token = isauthenticated().token
         const userId = isauthenticated().user._id
         addToFav(curr, userId, token)
             .then(result => {
                 console.log(result)
-
+                toast.info(result.check == true ? `${result.message}` : ` ${currency} Added to favourite :)`, {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    style: {
+                        fontSize: 15,
+                        backgroundColor: result.check == true ? `orange` : ``
+                    }
+                });
             })
             .catch(err => {
                 console.log(err)
             })
     }
+
+    function addtoSub(e) {
+        e.preventDefault()
+        const subemail = {
+            sub: sub,
+        }
+        const token = isauthenticated().token
+        const userId = isauthenticated().user._id
+        addToSub(subemail, userId, token)
+            .then(result => {
+                console.log(result)
+                setSubCheck(true)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+
+    function removefromSub(e) {
+        e.preventDefault()
+        const token = isauthenticated().token
+        const userId = isauthenticated().user._id
+        removeFromSub(userId, token)
+            .then(result => {
+                setSubCheck(false)
+                setSub("")
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
     function handleTimeChange(event) {
         event.preventDefault();
         setLoad(true)
@@ -80,6 +118,18 @@ const Home = () => {
         }
 
     }
+
+    useEffect(() => {
+        if(isauthenticated()) {
+            getSub(isauthenticated().user._id, isauthenticated().token)
+            .then(result => {
+                console.log(result)
+                setSub(result.subemail)
+                setSubCheck(result.sub)
+            })
+            .catch(err => console.log(err))
+        } 
+    }, [])
 
     return (
         <>
@@ -137,7 +187,14 @@ const Home = () => {
 
             </div>
 
-            <Newsletter />
+            <Newsletter
+            addtoSub={addtoSub}
+            removefromSub={removefromSub}
+            sub={sub}
+            setSub={setSub}
+            subCheck={subCheck}
+            setSubCheck={setSubCheck}
+            />
             <Footer />
 
 

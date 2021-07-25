@@ -12,9 +12,9 @@ const fetchCrypto = (currency) => {
             console.log(err)
         })
 }
+let removeByteOrderMark = a=>a[0]=="\ufeff"?a.slice(1):a
 
 const fetchFav = (fav, currency) => {
-
     const API = `https://api.nomics.com/v1/currencies/ticker?key=bd3ef17b17e9b8152a9c539636b718bceade570c&ids=${fav}&interval=1d,30d&convert=${currency}`
 
     return fetch(API, {
@@ -81,4 +81,45 @@ const postNotify = (notify, userId, token) => {
     .then(response => { console.log(response); return response.json() })
     .catch(err => console.log(err))
 }
-export {fetchCrypto ,fetchFav , addToFav, getFav ,postNotify , removeFromFav } ;
+
+const addToSub = (sub, userId, token) => {
+    return fetch(`${process.env.REACT_APP_API_URL}/addSub/${userId}`, {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(sub)
+    })
+    .then(response => { console.log(response); return response.json() })
+    .catch(err => console.log(err))
+}
+
+const removeFromSub = (userId, token) => {
+    return fetch(`${process.env.REACT_APP_API_URL}/removeSub/${userId}`, {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+    })
+    .then(response => { console.log(response); return response.json() })
+    .catch(err => console.log(err))
+}
+
+const getSub = (userId, token) => {
+    return fetch(`${process.env.REACT_APP_API_URL}/getSub/${userId}`, {
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        }
+    })
+    .then(response => { return response.json() })
+    .catch(err => console.log(err))
+}
+
+export {fetchCrypto ,fetchFav , addToFav, getFav ,postNotify , removeFromFav, addToSub, getSub, removeFromSub } ;

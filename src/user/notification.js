@@ -26,8 +26,8 @@ const Notification = ({ match, props }) => {
         e.preventDefault()
         const notify = {
             currency: crypto,
-            upper: upper,
-            lower: lower
+            upper: upper || 0,
+            lower: lower == null ?  "Infinity" : lower,
         }
         const token = isauthenticated().token
         const userId = isauthenticated().user._id
