@@ -19,7 +19,7 @@ const Home = () => {
     const [sub, setSub] = useState("")
     const [subCheck, setSubCheck] = useState(false)
 
-    setInterval(() => { setReload(!reload) }, 10000);
+    setInterval(() => { setReload(!reload) }, 30000);
 
     const fetch = () => {
 
