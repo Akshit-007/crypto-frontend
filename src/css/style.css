@@ -374,3 +374,27 @@ div.right > *{
         transform: translateX(0%);
     }
 }
+@media(max-width: 500px)
+{
+    .demoname
+    {
+        display: block;
+        margin-left: 80px;
+    }
+    .left
+    {
+        display: none;
+    }
+}
+@media(max-width: 400px)
+{
+    .demoname
+    {
+        display: block;
+        margin-left: 70px;
+    }
+    .left
+    {
+        display: none;
+    }
+}
