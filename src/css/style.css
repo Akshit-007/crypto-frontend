@@ -21,6 +21,10 @@ body{
     background-color: rgb(224, 224, 183);
     height: 100%;
 }
+.demoname
+{
+    display: none;
+}
 .navbar input[type='checkbox'],.navbar .hamburger-lines{display: none;}
 .navbar{
     box-shadow: 0px 5px 10px 0px #d1c9c9;
@@ -272,6 +276,15 @@ div.right > *{
 }
 @media(max-width: 700px)
 {
+    .demoname
+    {
+        display: block;
+        margin-left: 140px;
+    }
+    .left
+    {
+        display: none;
+    }
     .navbar .hamburger-lines{
         display: flex;
         flex-direction: column;

@@ -7,6 +7,9 @@ const Nav = () => {
     return (
         <>
             <nav className="navbar" >
+                <div className="demoname">
+                    <h1>Crypto Tracker</h1>
+                </div>
                 <div className="navbar-container container">
                     <input type="checkbox" className='checkBox' />
                     <div className="hamburger-lines">
