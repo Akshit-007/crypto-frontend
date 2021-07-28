@@ -1,0 +1,30 @@
+
+.tableHead
+{
+    height:50px;
+    width:200px;
+}
+.tableRow{
+    height:70px;
+    width:400px;
+}
+.tableRows{
+    width:100;
+}
+
+@media only screen and (max-width: 1280px) {
+  .cryptoData{
+    font-size:17px;
+}
+
+}
+@media only screen and (max-width: 930px) {
+  .cryptoData{
+    font-size:12px;
+}
+.tableRow{
+    height:50px;
+    
+}
+
+}

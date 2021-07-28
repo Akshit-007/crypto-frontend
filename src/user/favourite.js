@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import '../css/style.css'
 import Nav from "./nav.js"
 import MainTable from './MainTable';
-import { fetchFav, getFav, removeFromFav } from './data';
+import { fetchfavCryptoUSD, fetchfavCryptoINR, fetchfavCryptoEUR, getFav, removeFromFav } from './data';
 import { isauthenticated } from '../auth'
 import { toast } from 'react-toastify';
 import { CircularProgress } from '@material-ui/core';
@@ -17,6 +17,7 @@ const Favourite = () => {
     const [favString, setFavString] = useState(null)
     const [loading, setLoading] = useState(false)
     const [noFav, setNoFav] = useState(false)
+
 
     setInterval(() => { setReload(!reload) }, 30000);
 
@@ -41,10 +42,10 @@ const Favourite = () => {
         const userId = isauthenticated().user._id
         removeFromFav(curr, userId, token)
             .then(result => {
-                let newCryptos = cryptos.filter(c => c.currency != currency)
+                let newCryptos = cryptos.filter(c => c.currency !== currency)
                 setCryptos(newCryptos)
                 setFavString(favString.replace(currency, ""))
-                if(newCryptos.length == 0) {
+                if (newCryptos.length === 0) {
                     setNoFav(true)
                 }
                 setLoading(false)
@@ -60,13 +61,14 @@ const Favourite = () => {
         const userId = isauthenticated().user._id
         getFav(userId, token)
             .then(result => {
-                if(result.check == true) {
+                if (result.check === true) {
+
                     setNoFav(true)
                 }
                 else {
                     setNoFav(false)
                     setFavString(result.fav)
-                    fetch()
+
                 }
             })
             .catch(err => {
@@ -74,17 +76,27 @@ const Favourite = () => {
             })
     }
 
-    const fetch = () => {
-        fetchFav(favString, currency)
-            .then(data => {
-                setCryptos(data)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+    const fetch = (favString, currency) => {
+
+
+        if (currency === "USD") {
+            fetchfavCryptoUSD(favString)
+                .then(data => { setCryptos(data) })
+                .catch(err => console.log(err))
+        }
+        else if (currency === "INR") {
+            fetchfavCryptoINR(favString)
+                .then(data => { setCryptos(data) })
+                .catch(err => console.log(err))
+        }
+        else {
+            fetchfavCryptoEUR(favString)
+                .then(data => { setCryptos(data) })
+                .catch(err => console.log(err))
+        }
     }
     useEffect(() => { fetchString() }, [])
-    useEffect(() => { fetch() }, [currency, reload])
+    useEffect(() => { fetch(favString, currency) }, [currency, reload, favString])
     // console.log(cryptos);
 
     function handleChangecurrency(event) {
@@ -147,28 +159,29 @@ const Favourite = () => {
                 <br />
 
                 {loading ? <div className="spinner"><CircularProgress /></div> : <div className="crypto">
-                    {noFav == true ? (
+                    {noFav === true ? (
                         <>
                             <h1>No Favorites Added :)</h1>
                         </>
                     ) : (
                         <>
-                        {cryptos.length == 0 ?
-                            <>
-                                <h1>Fetching Data...</h1>
-                            </>
-                            :
-                            <MainTable
-                                cryptos={cryptos}
-                                handleTimeChange={handleTimeChange}
-                                handleChangecurrency={handleChangecurrency}
-                                currency={currency}
-                                time={time}
-                                noFav={false}
-                                removefromfav={removefromfav}
-                                removeFav={true}
-                            />
-                        }
+                            {cryptos.length === 1 ?
+                                <>
+                                    <h1>Fetching Data...</h1>
+                                </>
+                                :
+                                <MainTable
+                                    cryptos={cryptos}
+                                    handleTimeChange={handleTimeChange}
+                                    handleChangecurrency={handleChangecurrency}
+                                    currency={currency}
+                                    time={time}
+                                    noFav={false}
+                                    removefromfav={removefromfav}
+                                    removeFav={true}
+                                />
+
+                            }
                         </>
                     )}
 

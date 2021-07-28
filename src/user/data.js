@@ -1,34 +1,89 @@
 // import React from 'react'
- 
-const fetchCrypto = (currency) => {
 
-    const API = `https://api.nomics.com/v1/currencies/ticker?key=cbd1795669ba0116a656db6c0fcfbd1f55de6357&interval=1d,30d&convert=${currency}&per-page=100&page=1`
+const fetchCryptoUSD = () => {
 
-    return fetch(API, {
+    return fetch("/coins/USD", {
         method: "GET"
     })
-        .then((response) => response.json())
-        .catch(err => {
-            console.log(err)
-        })
+        .then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            return (data);
+        });
 }
-let removeByteOrderMark = a=>a[0]=="\ufeff"?a.slice(1):a
 
-const fetchFav = (fav, currency) => {
-    const API = `https://api.nomics.com/v1/currencies/ticker?key=bd3ef17b17e9b8152a9c539636b718bceade570c&ids=${fav}&interval=1d,30d&convert=${currency}`
+const fetchCryptoINR = () => {
 
-    return fetch(API, {
+
+    return fetch("/coins/INR", {
         method: "GET"
     })
-    .then((response) => response.json())
-    .catch(err => {
-        console.log(err)
-    })
+        .then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            return (data);
+        });
 }
 
+const fetchCryptoEUR = () => {
+
+    return fetch("/coins/EUR", {
+        method: "GET"
+    })
+        .then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            return (data);
+        });
+}
+let removeByteOrderMark = a => a[0] === "\ufeff" ? a.slice(1) : a
+
+
+const fetchfavCryptoUSD = (favString) => {
+
+    return fetch("/coins/favusd", {
+        method: "GET",
+        headers: {
+            data: favString
+        }
+    })
+        .then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            return data;
+        });
+}
+const fetchfavCryptoINR = (favString) => {
+
+    return fetch("/coins/favinr", {
+        method: "GET",
+        headers: {
+            data: favString
+        }
+    })
+        .then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            return data;
+        });
+}
+const fetchfavCryptoEUR = (favString) => {
+
+    return fetch("/coins/faveur", {
+        method: "GET",
+        headers: {
+            data: favString
+        }
+    })
+        .then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            return data;
+        });
+}
 
 const addToFav = (curr, userId, token) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/addToFav/${userId}`, {
+    return fetch(`/addToFav/${userId}`, {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -37,12 +92,12 @@ const addToFav = (curr, userId, token) => {
         },
         body: JSON.stringify(curr)
     })
-    .then(response => { console.log(response); return response.json() })
-    .catch(err => console.log(err))
+        .then(response => { console.log(response); return response.json() })
+        .catch(err => console.log(err))
 }
 
 const removeFromFav = (curr, userId, token) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/removeFromFav/${userId}`, {
+    return fetch(`/removeFromFav/${userId}`, {
         method: "PUT",
         headers: {
             Accept: "application/json",
@@ -51,12 +106,12 @@ const removeFromFav = (curr, userId, token) => {
         },
         body: JSON.stringify(curr)
     })
-    .then(response => { console.log(response); return response.json() })
-    .catch(err => console.log(err))
+        .then(response => { console.log(response); return response.json() })
+        .catch(err => console.log(err))
 }
 
 const getFav = (userId, token) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/getFav/${userId}`, {
+    return fetch(`/getFav/${userId}`, {
         method: "GET",
         headers: {
             Accept: "application/json",
@@ -64,12 +119,15 @@ const getFav = (userId, token) => {
             Authorization: `Bearer ${token}`
         }
     })
-    .then(response => { console.log(response); return response.json() })
-    .catch(err => console.log(err))
+        .then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            return data;
+        });
 }
 
 const postNotify = (notify, userId, token) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/notification/${userId}`, {
+    return fetch(`/notification/${userId}`, {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -78,12 +136,12 @@ const postNotify = (notify, userId, token) => {
         },
         body: JSON.stringify(notify)
     })
-    .then(response => { console.log(response); return response.json() })
-    .catch(err => console.log(err))
+        .then(response => { console.log(response); return response.json() })
+        .catch(err => console.log(err))
 }
 
 const addToSub = (sub, userId, token) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/addSub/${userId}`, {
+    return fetch(`/addSub/${userId}`, {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -92,12 +150,12 @@ const addToSub = (sub, userId, token) => {
         },
         body: JSON.stringify(sub)
     })
-    .then(response => { console.log(response); return response.json() })
-    .catch(err => console.log(err))
+        .then(response => { console.log(response); return response.json() })
+        .catch(err => console.log(err))
 }
 
 const removeFromSub = (userId, token) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/removeSub/${userId}`, {
+    return fetch(`/removeSub/${userId}`, {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -105,12 +163,12 @@ const removeFromSub = (userId, token) => {
             Authorization: `Bearer ${token}`
         },
     })
-    .then(response => { console.log(response); return response.json() })
-    .catch(err => console.log(err))
+        .then(response => { console.log(response); return response.json() })
+        .catch(err => console.log(err))
 }
 
 const getSub = (userId, token) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/getSub/${userId}`, {
+    return fetch(`/getSub/${userId}`, {
         method: "GET",
         headers: {
             Accept: "application/json",
@@ -118,8 +176,8 @@ const getSub = (userId, token) => {
             Authorization: `Bearer ${token}`
         }
     })
-    .then(response => { return response.json() })
-    .catch(err => console.log(err))
+        .then(response => { return response.json() })
+        .catch(err => console.log(err))
 }
 
-export {fetchCrypto ,fetchFav , addToFav, getFav ,postNotify , removeFromFav, addToSub, getSub, removeFromSub } ;
+export { fetchfavCryptoUSD, fetchfavCryptoINR, fetchfavCryptoEUR, fetchCryptoUSD, fetchCryptoINR, fetchCryptoEUR, addToFav, getFav, postNotify, removeFromFav, addToSub, getSub, removeFromSub };

@@ -1,6 +1,6 @@
 import React from 'react';
-import './newsletter.css';
-const Newsletter = ({ sub, setSub, setSubCheck, subCheck,  addtoSub, removefromSub }) => {
+import '../css/newsletter.css';
+const Newsletter = ({ sub, setSub, setSubCheck, subCheck, addtoSub, removefromSub }) => {
     return (
         <div className="newsletter">
             <div className="newsletter_content">
@@ -8,7 +8,7 @@ const Newsletter = ({ sub, setSub, setSubCheck, subCheck,  addtoSub, removefromS
                 <div className="newsletter_heading">Stay updated with daily<span className="bold_content"> Cypto news</span> </div>
                 <div className="newsletter_description">Just subscribe to our newsletter and stay updated with current crypto news </div>
                 <div className="newsletter_from">
-                    {subCheck == false ? (
+                    {subCheck === false ? (
                         <form>
                             <input className="nletter_input" type="text" onChange={e => setSub(e.target.value)} placeholder="Enter your email address" />&nbsp;&nbsp;&nbsp;&nbsp;<button className="nletter_btn" onClick={addtoSub}>Subscribe now</button>
                         </form>

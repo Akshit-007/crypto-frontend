@@ -1,5 +1,5 @@
 export const signup = (user) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/signup`,
+    return fetch(`/signup`,
         {
             method: "POST",
             headers: {
@@ -13,7 +13,7 @@ export const signup = (user) => {
 }
 
 export const signin = (user) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/signin`,
+    return fetch(`/signin`,
         {
             method: "POST",
             headers: {
@@ -32,27 +32,23 @@ export const authenticate = (jwt, next) => {
     next();
 }
 
-export const signout = (next) =>
-{
-    if(typeof window !== 'undefined') 
-      { 
-          localStorage.removeItem("jwt"); 
-      }
+export const signout = (next) => {
+    if (typeof window !== 'undefined') {
+        localStorage.removeItem("jwt");
+    }
     next()
-    return fetch(`${process.env.REACT_APP_API_URL}/signout` , {method: "GET"})
-    .then(response =>
-    { 
-        console.log("signout" , response)
-        return response.json()
-    })
-    .catch(err => console.log(err))
+    return fetch(`/signout`, { method: "GET" })
+        .then(response => {
+            console.log("signout", response)
+            return response.json()
+        })
+        .catch(err => console.log(err))
 };
 
-export const isauthenticated = () =>
-{
-    if(typeof window == "undefined")    return false;
+export const isauthenticated = () => {
+    if (typeof window == "undefined") return false;
 
-    if(localStorage.getItem("jwt")) 
-        return  JSON.parse(localStorage.getItem("jwt"));
-    else    return false;
+    if (localStorage.getItem("jwt"))
+        return JSON.parse(localStorage.getItem("jwt"));
+    else return false;
 }

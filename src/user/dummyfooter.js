@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './dummyfooter.css';
+import '../css/dummyfooter.css';
 const dummyfooter = () => {
     return (
         <div className="dfooter-cpyrt">

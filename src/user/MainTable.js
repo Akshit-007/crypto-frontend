@@ -1,22 +1,17 @@
 import React from "react"
-import { makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import { Paper } from '@material-ui/core';
 import { ArrowUpward } from '@material-ui/icons';
 import { ArrowDownward } from '@material-ui/icons';
 import { isauthenticated } from '../auth'
-const useStyles = makeStyles({
-    table: {
-        minWidth: 650,
-    },
-});
+import '../css/table.css'
 const MainTable = ({ cryptos, addtofav, noFav, handleTimeChange, handleChangecurrency, currency, removefromfav, time, removeFav }) => {
-    const classes = useStyles();
+
     return (
         <>
             <TableContainer component={Paper}>
-                <Table className={classes.table} aria-label="simple table">
+                <Table className="table" aria-label="simple table">
                     <TableHead>
                         <TableRow className="tableHead">
                             <TableCell><span className="headTitle">#</span></TableCell>
@@ -52,7 +47,7 @@ const MainTable = ({ cryptos, addtofav, noFav, handleTimeChange, handleChangecur
                                                 <span className="cryptoData">
                                                     {currency === 'USD' ? <>$</> :
                                                         <>
-                                                            {currency === 'INR' ? <>₹</> : <>ē</>}
+                                                            {currency === 'INR' ? <>₹</> : <>&euro;</>}
                                                         </>}
                                                     &nbsp;&nbsp;
                                                     {row.price < 1 ? parseFloat(row.price).toFixed(5) :

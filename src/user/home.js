@@ -4,7 +4,7 @@ import MainTable from './MainTable'
 import Newsletter from "./Newsletter.js"
 import Footer from "./footer"
 import Nav from "./nav.js"
-import { fetchCrypto, addToFav, addToSub, getSub, removeFromSub } from './data';
+import { fetchCryptoUSD, fetchCryptoINR, fetchCryptoEUR, addToFav, addToSub, getSub, removeFromSub } from './data';
 import { isauthenticated } from '../auth'
 import { toast } from 'react-toastify';
 import { CircularProgress } from '@material-ui/core';
@@ -21,14 +21,27 @@ const Home = () => {
 
     setInterval(() => { setReload(!reload) }, 30000);
 
-    const fetch = () => {
+    const fetch = (currency) => {
 
-        fetchCrypto(currency)
-            .then(data => { setCryptos(data) }, setLoad(false))
-            .catch(err => console.log(err))
+        if (currency === "USD") {
+            fetchCryptoUSD()
+                .then(data => { setCryptos(data) }, setLoad(false))
+                .catch(err => console.log(err))
+        }
+        else if (currency === "INR") {
+            fetchCryptoINR()
+                .then(data => { setCryptos(data) }, setLoad(false))
+                .catch(err => console.log(err))
+        }
+        else {
+            fetchCryptoEUR()
+                .then(data => { setCryptos(data) }, setLoad(false))
+                .catch(err => console.log(err))
+        }
+
     }
 
-    useEffect(() => { fetch() }, [reload], [currency])
+    useEffect(() => { fetch(currency) }, [reload], [currency])
     // console.log(cryptos);
 
     function handleChangecurrency(event) {
@@ -44,7 +57,7 @@ const Home = () => {
         addToFav(curr, userId, token)
             .then(result => {
                 console.log(result)
-                toast.info(result.check == true ? `${result.message}` : ` ${currency} Added to favourite :)`, {
+                toast.info(result.check === true ? `${result.message}` : ` ${currency} Added to favourite :)`, {
                     position: "top-right",
                     autoClose: 3000,
                     hideProgressBar: false,
@@ -54,7 +67,7 @@ const Home = () => {
                     progress: undefined,
                     style: {
                         fontSize: 15,
-                        backgroundColor: result.check == true ? `orange` : ``
+                        backgroundColor: result.check === true ? `orange` : ``
                     }
                 });
             })
@@ -120,15 +133,14 @@ const Home = () => {
     }
 
     useEffect(() => {
-        if(isauthenticated()) {
+        if (isauthenticated()) {
             getSub(isauthenticated().user._id, isauthenticated().token)
-            .then(result => {
-                console.log(result)
-                setSub(result.subemail)
-                setSubCheck(result.sub)
-            })
-            .catch(err => console.log(err))
-        } 
+                .then(result => {
+                    setSub(result.subemail)
+                    setSubCheck(result.sub)
+                })
+                .catch(err => console.log(err))
+        }
     }, [])
 
     return (
@@ -188,12 +200,12 @@ const Home = () => {
             </div>
 
             <Newsletter
-            addtoSub={addtoSub}
-            removefromSub={removefromSub}
-            sub={sub}
-            setSub={setSub}
-            subCheck={subCheck}
-            setSubCheck={setSubCheck}
+                addtoSub={addtoSub}
+                removefromSub={removefromSub}
+                sub={sub}
+                setSub={setSub}
+                subCheck={subCheck}
+                setSubCheck={setSubCheck}
             />
             <Footer />
 
