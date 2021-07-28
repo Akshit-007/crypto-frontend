@@ -1,5 +1,5 @@
 export const signup = (user) => {
-    return fetch(`/signup`,
+    return fetch(`https://crypto-tracker-apps.herokuapp.com/signup`,
         {
             method: "POST",
             headers: {
@@ -13,12 +13,12 @@ export const signup = (user) => {
 }
 
 export const signin = (user) => {
-    return fetch(`/signin`,
+    return fetch(`https://crypto-tracker-apps.herokuapp.com/signin`,
         {
             method: "POST",
             headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json"
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(user)
         })
@@ -37,7 +37,7 @@ export const signout = (next) => {
         localStorage.removeItem("jwt");
     }
     next()
-    return fetch(`/signout`, { method: "GET" })
+    return fetch(`https://crypto-tracker-apps.herokuapp.com/signout`, { method: "GET" })
         .then(response => {
             console.log("signout", response)
             return response.json()

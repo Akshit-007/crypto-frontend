@@ -2,8 +2,12 @@
 
 const fetchCryptoUSD = () => {
 
-    return fetch("/coins/USD", {
-        method: "GET"
+    return fetch("https://crypto-tracker-apps.herokuapp.com/coins/USD", {
+        method: "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
     })
         .then(function (response) {
             return response.json();
@@ -15,7 +19,7 @@ const fetchCryptoUSD = () => {
 const fetchCryptoINR = () => {
 
 
-    return fetch("/coins/INR", {
+    return fetch("https://crypto-tracker-apps.herokuapp.com/coins/INR", {
         method: "GET"
     })
         .then(function (response) {
@@ -27,7 +31,7 @@ const fetchCryptoINR = () => {
 
 const fetchCryptoEUR = () => {
 
-    return fetch("/coins/EUR", {
+    return fetch("https://crypto-tracker-apps.herokuapp.com/coins/EUR", {
         method: "GET"
     })
         .then(function (response) {
@@ -41,7 +45,7 @@ let removeByteOrderMark = a => a[0] === "\ufeff" ? a.slice(1) : a
 
 const fetchfavCryptoUSD = (favString) => {
 
-    return fetch("/coins/favusd", {
+    return fetch("https://crypto-tracker-apps.herokuapp.com/coins/favusd", {
         method: "GET",
         headers: {
             data: favString
@@ -55,7 +59,7 @@ const fetchfavCryptoUSD = (favString) => {
 }
 const fetchfavCryptoINR = (favString) => {
 
-    return fetch("/coins/favinr", {
+    return fetch("https://crypto-tracker-apps.herokuapp.com/coins/favinr", {
         method: "GET",
         headers: {
             data: favString
@@ -69,7 +73,7 @@ const fetchfavCryptoINR = (favString) => {
 }
 const fetchfavCryptoEUR = (favString) => {
 
-    return fetch("/coins/faveur", {
+    return fetch("https://crypto-tracker-apps.herokuapp.com/coins/faveur", {
         method: "GET",
         headers: {
             data: favString
@@ -83,7 +87,7 @@ const fetchfavCryptoEUR = (favString) => {
 }
 
 const addToFav = (curr, userId, token) => {
-    return fetch(`/addToFav/${userId}`, {
+    return fetch(`https://crypto-tracker-apps.herokuapp.com/addToFav/${userId}`, {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -97,7 +101,7 @@ const addToFav = (curr, userId, token) => {
 }
 
 const removeFromFav = (curr, userId, token) => {
-    return fetch(`/removeFromFav/${userId}`, {
+    return fetch(`https://crypto-tracker-apps.herokuapp.com/removeFromFav/${userId}`, {
         method: "PUT",
         headers: {
             Accept: "application/json",
@@ -111,7 +115,7 @@ const removeFromFav = (curr, userId, token) => {
 }
 
 const getFav = (userId, token) => {
-    return fetch(`/getFav/${userId}`, {
+    return fetch(`https://crypto-tracker-apps.herokuapp.com/getFav/${userId}`, {
         method: "GET",
         headers: {
             Accept: "application/json",
@@ -127,7 +131,7 @@ const getFav = (userId, token) => {
 }
 
 const postNotify = (notify, userId, token) => {
-    return fetch(`/notification/${userId}`, {
+    return fetch(`https://crypto-tracker-apps.herokuapp.com/notification/${userId}`, {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -141,7 +145,7 @@ const postNotify = (notify, userId, token) => {
 }
 
 const addToSub = (sub, userId, token) => {
-    return fetch(`/addSub/${userId}`, {
+    return fetch(`https://crypto-tracker-apps.herokuapp.com/addSub/${userId}`, {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -155,7 +159,7 @@ const addToSub = (sub, userId, token) => {
 }
 
 const removeFromSub = (userId, token) => {
-    return fetch(`/removeSub/${userId}`, {
+    return fetch(`https://crypto-tracker-apps.herokuapp.com/removeSub/${userId}`, {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -168,7 +172,7 @@ const removeFromSub = (userId, token) => {
 }
 
 const getSub = (userId, token) => {
-    return fetch(`/getSub/${userId}`, {
+    return fetch(`https://crypto-tracker-apps.herokuapp.com/getSub/${userId}`, {
         method: "GET",
         headers: {
             Accept: "application/json",
