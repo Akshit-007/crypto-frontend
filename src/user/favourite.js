@@ -165,7 +165,7 @@ const Favourite = () => {
                         </>
                     ) : (
                         <>
-                            {cryptos.length === 1 ?
+                            {cryptos.length === 0 ?
                                 <>
                                     <h1>Fetching Data...</h1>
                                 </>
